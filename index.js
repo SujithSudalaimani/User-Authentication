@@ -14,7 +14,7 @@ app.use(cors());
 connectDB();
 
 app.get("/", (req, res) => {
-  res.status(200).send("Welcome to Backend");
+  res.status(200).send("Welcome to User Authentication Backend");
 });
 
 app.use("/api/auth",authRoute)
