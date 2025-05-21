@@ -25,10 +25,11 @@ export const authMiddlerware = async (req, res, next) => {
 };
 
 export const adminMiddleware = async (req, res, next) => {
-  if (req.user.role != "Admin") {
+   const user = await User.findById(req.user._id);
+  if (!user || user.role !== "Admin") {
     return res
-      .status(404)
-      .json({ message: "Access Denied you are not an admin" });
+      .status(403)
+      .json({ message: "Access Denied, you are not an admin" });
   }
   next();
 };
